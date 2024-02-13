@@ -27,11 +27,17 @@ void InputExtraction(){
     cout << "Please Enter An Equation: " << "\n";
     cin >> equation;
     int pos;
-    for(int i = 0; i < equation.size();i++){
-       if(equation[i] == '+' || equation[i] == '*' || equation[i] == '/' || equation[i] == '-'){
-            operat = equation[i];
-            pos = i;
-        }
+    try{
+        for(int i = 0; i < equation.size();i++){
+            if(equation[i] == '+' || equation[i] == '*' || equation[i] == '/' || equation[i] == '-'){
+                operat = equation[i];
+                pos = i;
+            }
+    }
+    }catch(...){
+        cout << "Invalid input. Please try agian";
+        InputExtraction();  // Retry input if it's invalid
+        return;
     }
     first = equation.substr(0,pos);
     operat = equation.substr(pos,1);
