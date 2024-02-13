@@ -5,7 +5,7 @@
 using namespace std;
 
 void InputExtraction();
-void Logic(string firstNum, string secondNum, string operato);
+void Logic(string* firstNum, string* secondNum, string* operato);
 bool isValidNumber(const string& str);
 void recurtion();
 
@@ -37,7 +37,6 @@ void InputExtraction(){
     }catch(...){
         cout << "Invalid input. Please try agian";
         InputExtraction();  // Retry input if it's invalid
-        return;
     }
     first = equation.substr(0,pos);
     operat = equation.substr(pos,1);
@@ -49,7 +48,7 @@ void InputExtraction(){
         return;
     }
 
-    Logic(first,second,operat);
+    Logic(&first,&second,&operat);
 }
 
 bool isValidNumber(const string& str) {
@@ -61,20 +60,20 @@ bool isValidNumber(const string& str) {
     }
 }
 
-void Logic(string firstNum, string secondNum, string operato){
+void Logic(string* firstNum, string* secondNum, string* operato){
     
-    int numer = stod(firstNum);
-    int numer2 = stod(secondNum);
-    if(operato == "+"){
+    int numer = stod(*firstNum);
+    int numer2 = stod(*secondNum);
+    if(*operato == "+"){
         cout << numer << " + " << numer2 <<" = "<< numer + numer2 << "\n";
     }
-    else if(operato == "*"){
+    else if(*operato == "*"){
         cout << numer << " * " << numer2 <<" = "<< numer * numer2 << "\n";
     }
-    else if(operato == "/"){
+    else if(*operato == "/"){
         cout << numer << " / " << numer2 <<" = "<< numer / numer2 << "\n";
     }
-    else if(operato == "-"){
+    else if(*operato == "-"){
         cout << numer << " - " << numer2 <<" = "<< numer - numer2 << "\n";
     }
     else{
@@ -101,7 +100,7 @@ void recurtion(){
             cout << "Invalid choice. Please enter 'y' or 'n'." << "\n";
         }
     } while (answer != 'n');
-
+        
 }
 
 
